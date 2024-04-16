@@ -90,13 +90,14 @@ echo 打包...
 
 if [ x$BUILD_TYPE = x"github" ]; then
     # GitHub Actions will take over the tarball creation.
-    rm -rf dist/tools dist/.git dist/.github dist/make_simp_dist.sh
+    rm -rf dist/tools dist/.git dist/.github dist/make_simp_dist.sh dist/make_fly_dist.sh
     exit 0
 fi
 
 rm -rf dist/tools
 rm -rf dist/.git dist/.github dist/.gitignore
 rm -rf dist/make_simp_dist.sh
+rm -rf dist/make_fly_dist.sh
 # cp 下载与安装说明.txt 更新纪要.txt dist
 # sedi 's/MORAN_VARIANT/简体/' dist/下载与安装说明.txt
 

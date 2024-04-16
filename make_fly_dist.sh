@@ -134,18 +134,21 @@ cd ..
 
 echo 打包...
 
-if [ x$BUILD_TYPE = x"github" ]; then
-    # GitHub Actions will take over the tarball creation.
-    rm -rf flyfication/tools flyfication/.git flyfication/.github flyfication/make_simp_dist.sh flyfication/make_fly_dist.sh
-    exit 0
-fi
-
 rm -rf flyfication/tools
 rm -rf flyfication/.git flyfication/.github flyfication/.gitignore
 rm -rf flyfication/make_simp_dist.sh
 rm -rf flyfication/make_fly_dist.sh
-# cp 下载与安装说明.txt 更新纪要.txt flyfication
-# sedi 's/MORAN_VARIANT/简体/' flyfication/下载与安装说明.txt
+rm -rf flyfication/default.yaml
+rm -rf flyfication/key_bindings.yaml
+rm -rf flyfication/punctuation.yaml
+
+rm -rf flyfication/dist/tools
+rm -rf flyfication/dist/.git flyfication/.github flyfication/.gitignore
+rm -rf flyfication/dist/make_simp_dist.sh
+rm -rf flyfication/dist/make_fly_dist.sh
+rm -rf flyfication/dist/default.yaml
+rm -rf flyfication/dist/key_bindings.yaml
+rm -rf flyfication/dist/punctuation.yaml
 
 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on "MoranFlyfication-$(date +%Y%m%d).7z" flyfication
 # rm -rf flyfication

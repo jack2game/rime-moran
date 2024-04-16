@@ -10,6 +10,7 @@ git archive HEAD -o archive.tar
 mkdir -p dist
 tar xf archive.tar -C dist
 rm archive.tar
+rm -rf dist/flyfication/
 cd dist
 
 # 更新单字字频
@@ -97,7 +98,7 @@ rm -rf dist/tools
 rm -rf dist/.git dist/.github dist/.gitignore
 rm -rf dist/make_simp_dist.sh
 # cp 下载与安装说明.txt 更新纪要.txt dist
-sedi 's/MORAN_VARIANT/简体/' dist/下载与安装说明.txt
+# sedi 's/MORAN_VARIANT/简体/' dist/下载与安装说明.txt
 
 7z a -t7z -m0=lzma -mx=9 -mfb=64 -md=32m -ms=on "MoranSimplified-$(date +%Y%m%d).7z" dist
-rm -rf dist
+# rm -rf dist

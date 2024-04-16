@@ -36,8 +36,8 @@ mv ../moran.moe.dict.yaml{.bak,}
 mv ../moran.tencent.dict.yaml{.bak,}
 mv ../moran.thuocl.dict.yaml{.bak,}
 mv ../moran.words.dict.yaml{.bak,}
-mv ../moran.moran_fixed.dict.yaml{.bak,}
-mv ../moran.moran_fixed_simp.dict.yaml{.bak,}
+mv ../moran_fixed.dict.yaml{.bak,}
+mv ../moran_fixed_simp.dict.yaml{.bak,}
 
 # # 生成碼表
 # # 繁体：
@@ -92,8 +92,8 @@ mv ../dist/moran.moe.dict.yaml{.bak,}
 mv ../dist/moran.tencent.dict.yaml{.bak,}
 mv ../dist/moran.thuocl.dict.yaml{.bak,}
 mv ../dist/moran.words.dict.yaml{.bak,}
-mv ../dist/moran.moran_fixed.dict.yaml{.bak,}
-mv ../dist/moran.moran_fixed_simp.dict.yaml{.bak,}
+mv ../dist/moran_fixed.dict.yaml{.bak,}
+mv ../dist/moran_fixed_simp.dict.yaml{.bak,}
 
 # # 生成碼表
 # # 简体：

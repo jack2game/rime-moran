@@ -11,6 +11,7 @@ mkdir -p dist
 tar xf archive.tar -C dist
 rm archive.tar
 rm -rf dist/flyfication/
+rm -rf dist/dist/
 cd dist
 
 # 更新单字字频

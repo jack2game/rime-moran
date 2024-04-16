@@ -10,7 +10,8 @@ git archive HEAD -o archive.tar
 mkdir -p flyfication
 tar xf archive.tar -C flyfication
 rm archive.tar
-
+rm -rf flyfication/flyfication/
+# rm -rf flyfication/dist/
 cd flyfication
 
 # 轉換繁体詞庫

@@ -1,14 +1,5 @@
 -- author: https://github.com/ChaosAlphard
--- usage: https://github.com/gaboolic/rime-shuangpin-fuzhuma/pull/41
 -- adaptation: jack2game
-
-local function startsWith(str, start)
-  return string.sub(str, 1, string.len(start)) == start
-end
-
-local function truncateFromStart(str, truncateStr)
-  return string.sub(str, string.len(truncateStr) + 1)
-end
 
 -- 函数表
 local calcPlugin = {
@@ -215,28 +206,28 @@ end
 
 -- 简单计算器
 local function calculator(input, seg)
-  if not startsWith(input, "C") then return end
+  if not string.sub(input, 1, 1) == "C" then return end
   -- 提取算式
-  local express = truncateFromStart(input, "C")
+  local expression = string.sub(input, 2)
   -- 算式长度 < 2 直接终止(没有计算意义)
-  if (string.len(express) < 2) then return end
+  if (string.len(expression) < 2) then return end
   -- pcall()的原因需要控制一下 . 符号的位置
   -- 现在不需要了
-  -- if (string.match(express, "[^0-9]%.")) then
-  --   yield(Candidate(input, seg.start, seg._end, express, "小数点不能在非数字字符后面"))
+  -- if (string.match(expression, "[^0-9]%.")) then
+  --   yield(Candidate(input, seg.start, seg._end, expression, "小数点不能在非数字字符后面"))
   --   return
   -- end
-  local code = replaceToFactorial(express)
+  local code = replaceToFactorial(expression)
 
   local success, result = pcall(load("return " .. code, "calculate", "t", calcPlugin))
   if success then
     yield(Candidate(input, seg.start, seg._end, result, ""))
-    yield(Candidate(input, seg.start, seg._end, express .. "=" .. result, ""))
+    yield(Candidate(input, seg.start, seg._end, expression .. "=" .. result, ""))
   else
-    yield(Candidate(input, seg.start, seg._end, express, "解析失败"))
+    yield(Candidate(input, seg.start, seg._end, expression, "解析失败"))
     yield(Candidate(input, seg.start, seg._end, code, "入参"))
     -- TODO: 错误信息记录到日志中
-    -- print("express: " .. express)
+    -- print("expression: " .. expression)
     -- print("code: " .. code)
     -- print("result: " .. result)
   end

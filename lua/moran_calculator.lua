@@ -205,7 +205,7 @@ local function replaceToFactorial(str)
 end
 
 -- 简单计算器
-local function calculator(input, seg)
+local function calculator(input, seg, env)
   if not string.sub(input, 1, 1) == "C" then return end
   -- 提取算式
   local expression = string.sub(input, 2)

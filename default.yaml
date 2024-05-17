@@ -10,6 +10,7 @@ schema_list:
   - schema: moran_aux
   - schema: moran_bj
   - schema: tiger
+  - schema: xhloopkai
   # - schema: luna_pinyin
   # - schema: luna_pinyin_simp
   # - schema: luna_pinyin_fluency
@@ -55,7 +56,7 @@ key_binder:
     __patch:
       - key_bindings:/emacs_editing
       - key_bindings:/move_by_word_with_tab
-      # - key_bindings:/paging_with_minus_equal    # 計算器的潛在衝突
+      - key_bindings:/paging_with_minus_equal    # 計算器的潛在衝突
       - key_bindings:/numbered_mode_switch
       - key_bindings:/enable_keypad_inputs
       # - key_bindings:/paging_with_comma_period

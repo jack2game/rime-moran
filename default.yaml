@@ -10,7 +10,6 @@ schema_list:
   - schema: moran_aux
   - schema: moran_bj
   - schema: tiger
-  - schema: xhloopkai
   # - schema: luna_pinyin
   # - schema: luna_pinyin_simp
   # - schema: luna_pinyin_fluency

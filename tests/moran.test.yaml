@@ -1,0 +1,92 @@
+schema: moran
+source_dir: ..
+script: |
+  function eq(left, right)
+    print('Left  = ' .. tostring(left))
+    print('Right = ' .. tostring(right))
+    return left == right
+  end
+
+deploy:
+  default:
+    tests:
+      - send: l
+        assert: eq(cand[1].text, '了') and eq(cand[1].comment, "⚡️")
+      - send: le
+        assert: eq(cand[1].text, "樂") and eq(cand[1].comment, "⚡️")
+      - send: lem
+        assert: eq(cand[1].text, "樂") and eq(cand[1].comment, "⚡️")
+      - send: lemd
+        assert: eq(cand[1].text, "楽") and eq(cand[1].comment, "")
+      - send: hello
+        assert: eq(cand[1].text, "hello")
+      - send: jis
+        assert: eq(cand[1].text, "級") and eq(cand[1].comment, "⚡️")
+      - send: jisjo
+        assert: eq(cand[1].text, "紀")
+
+  emoji:
+    options:
+      emoji: true
+    tests:
+      - send: hk
+        assert: eq(cand[2].text, "👌")
+      - send: o
+        assert: eq(cand[2].text, "😯")
+      - send: ou
+        assert: eq(cand[2].text, "€")
+      - send: mzgo
+        assert: eq(cand[2].text, "🇺🇸")
+      - send: vsgo
+        assert: eq(cand[2].text, "🇨🇳")
+      - send: y
+        assert: eq(cand[2].text, "1️⃣")
+      - send: 'e;'
+        assert: eq(commit, '兒')
+      - send: 'y;'
+        assert: eq(commit, "又")
+      - send: 'sd;'
+        assert: eq(commit, "3D")
+
+  quick_code_indicator_empty:
+    patch:
+      moran/quick_code_indicator: ""
+    tests:
+      - send: l
+        assert: eq(cand[1].text, "了") and eq(cand[1].comment, "")
+  quick_code_indicator_other:
+    patch:
+      moran/quick_code_indicator: "💥"
+    tests:
+      - send: l
+        assert: eq(cand[1].text, "了") and eq(cand[1].comment, "💥")
+      - send: le
+        assert: eq(cand[1].text, "樂") and eq(cand[1].comment, "💥")
+      - send: lem
+        assert: eq(cand[1].text, "樂") and eq(cand[1].comment, "💥")
+      - send: lemd
+        assert: eq(cand[1].text, "楽") and eq(cand[1].comment, "")
+
+  word_filter:
+    patch:
+      moran/enable_word_filter: true
+    tests:
+      - send: lmjx
+        assert: eq(cand[1].text, "鏈接")
+      - send: lmjxz
+        assert: eq(cand[1].text, "連接")
+
+  pin:
+    options:
+      emoji: false
+    tests:
+      - send: 'lmjx'
+        assert: eq(cand[1].text, '鏈接') and eq(cand[2].text, '連接')
+      - send: 'lmjx{Control+t}'
+        assert: eq(cand[1].comment, "📌")
+      - send: 'lmjx{Control+t}'
+        assert: eq(cand[1].comment, "")
+      - send: 'lmjx{Down}{Control+t}'
+        assert: eq(cand[1].text, '連接') and eq(cand[1].comment, "📌")
+      - send: 'lmjx'
+        assert: eq(cand[1].text, '連接') and eq(cand[1].comment, "📌")
